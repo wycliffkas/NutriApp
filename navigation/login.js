@@ -7,6 +7,7 @@ import { darkGrey100 } from "../styles/colors";
 
 import BodyTypeScreen from "../views/login/BodyType";
 import AgeScreen from "../views/login/Age";
+import ActivityLevelScreen from "../views/login/ActivityLevel";
 
 const Stack = createStackNavigator();
 
@@ -48,6 +49,19 @@ const Login = () => {
 				<Stack.Screen
 					name="Age"
 					component={AgeScreen}
+					options={({ navigation }) => ({
+						headerLeft: () => (
+							<TouchableOpacity
+								onPress={() => navigation.goBack()}
+								style={{ marginLeft: 10 }}>
+								<AntDesign name="arrowleft" size={24} color="black" />
+							</TouchableOpacity>
+						)
+					})}
+				/>
+				<Stack.Screen
+					name="ActivityLevel"
+					component={ActivityLevelScreen}
 					options={({ navigation }) => ({
 						headerLeft: () => (
 							<TouchableOpacity
