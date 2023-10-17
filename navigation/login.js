@@ -5,7 +5,8 @@ import { TouchableOpacity } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { darkGrey100 } from "../styles/colors";
 
-import BodyType from "../views/login/BodyType";
+import BodyTypeScreen from "../views/login/BodyType";
+import AgeScreen from "../views/login/Age";
 
 const Stack = createStackNavigator();
 
@@ -33,7 +34,20 @@ const Login = () => {
 				}}>
 				<Stack.Screen
 					name="BodyType"
-					component={BodyType}
+					component={BodyTypeScreen}
+					options={({ navigation }) => ({
+						headerLeft: () => (
+							<TouchableOpacity
+								onPress={() => navigation.goBack()}
+								style={{ marginLeft: 10 }}>
+								<AntDesign name="arrowleft" size={24} color="black" />
+							</TouchableOpacity>
+						)
+					})}
+				/>
+				<Stack.Screen
+					name="Age"
+					component={AgeScreen}
 					options={({ navigation }) => ({
 						headerLeft: () => (
 							<TouchableOpacity

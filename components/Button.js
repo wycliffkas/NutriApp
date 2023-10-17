@@ -2,9 +2,9 @@ import React from "react";
 import { TouchableOpacity, Text, StyleSheet } from "react-native";
 import { darkGrey300 } from "../styles/colors"
 
-const Button = ({title}) => {
+const Button = ({title, onHandlePress}) => {
 	return (
-    <TouchableOpacity style={styles.button}>
+    <TouchableOpacity style={styles.button} onPress={onHandlePress}>
       <Text style={styles.text}>{title}</Text>
     </TouchableOpacity>
 	);
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
 		backgroundColor: darkGrey300,
 		borderRadius: 12,
 		color: "black",
-    marginTop: 20
+    marginTop: 60
 	},
   text: {
     color: 'black',

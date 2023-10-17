@@ -11,6 +11,10 @@ const BodyType = ({ navigation }) => {
 		setSelected(index === selected ? null : index);
 	};
 
+  const handleNext = () => {
+    navigation.navigate('Age')
+  }
+
 	const bodyTypes = [
 		{
 			id: 1,
@@ -49,7 +53,7 @@ const BodyType = ({ navigation }) => {
 				/>
 			))}
 
-			<Button title="Next" />
+			<Button title="Next" onHandlePress={handleNext}/>
 		</View>
 	);
 };
