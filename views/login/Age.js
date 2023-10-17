@@ -4,7 +4,11 @@ import Slider from "../../components/Slider";
 import Button from "../../components/Button";
 import { main } from "../../styles/main";
 
-const Age = () => {
+const Age = ({ navigation}) => {
+  const handleNext = () => {
+    navigation.navigate('ActivityLevel')
+  }
+
 	return (
 		<View style={styles.container}>
 			<View style={styles.contentContainer}>
@@ -12,7 +16,7 @@ const Age = () => {
 			</View>
 			<Slider />
 			<View style={styles.button}>
-				<Button title="Next" />
+				<Button title="Next" onHandlePress={handleNext}/>
 			</View>
 		</View>
 	);
