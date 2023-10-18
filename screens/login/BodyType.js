@@ -1,39 +1,58 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { View, Text, StyleSheet } from "react-native";
+import Toast from "react-native-toast-message";
+
 import { main } from "../../styles/main";
 import OptionField from "../../components/OptionField";
 import Button from "../../components/Button";
+import { AuthContext } from "../../context/AuthContext";
 
 const BodyType = ({ navigation }) => {
+	const [bodyType, setBodyType] = useState(null);
 	const [selected, setSelected] = useState(null);
 
-	const handleSelection = (index) => {
+	const { userDetails, setUserDetails } = useContext(AuthContext);
+
+	const handleSelection = (index, value) => {
 		setSelected(index === selected ? null : index);
+		setBodyType(value);
 	};
 
-  const handleNext = () => {
-    navigation.navigate('Age')
-  }
+	const showToast = () => {
+		Toast.show({
+			type: "info",
+			text1: "Please choose your body type"
+		});
+	};
+
+	const handleNext = () => {
+		if (selected === null) {
+			showToast();
+			return;
+		}
+		setUserDetails({ ...userDetails, bodyType });
+		navigation.navigate("Age");
+	};
 
 	const bodyTypes = [
 		{
 			id: 1,
-			title: "Skinny.",
+			title: "Skinny",
 			description: "Underweight and low fat percentage."
 		},
 		{
 			id: 2,
-			title: "Skinny Fat.",
+			title: "Skinny Fat",
 			description: "Skinny, but have loose fat."
 		},
 		{
 			id: 3,
-			title: "Athletic.",
+			title: "Athletic",
 			description: "Skinny, but have loose fat."
 		},
 		{
 			id: 4,
-			title: "Obese.",
+			title: "Obese",
 			description: "Extremely overweight and does not exercise."
 		}
 	];
@@ -53,15 +72,15 @@ const BodyType = ({ navigation }) => {
 				/>
 			))}
 
-			<Button title="Next" onHandlePress={handleNext}/>
+			<Button title="Next" onHandlePress={handleNext} />
 		</View>
 	);
 };
 
-
 const styles = StyleSheet.create({
 	container: {
-    marginHorizontal: 20,
+    flex: 1,
+		marginHorizontal: 20,
 	}
 });
 

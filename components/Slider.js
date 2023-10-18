@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
 	View,
 	FlatList,
@@ -12,13 +12,11 @@ import { darkGrey100 } from "../styles/colors";
 const screenWidth = Dimensions.get("window").width;
 const itemWidth = screenWidth * 0.2;
 
-const Slider = () => {
-	const [selectedAge, setSelectedAge] = useState(null);
-
+const Slider = ({ selectedItem, setSelectedItem }) => {
 	const renderNumber = ({ item }) => {
-		const isCurrent = item === selectedAge;
+		const isCurrent = item === selectedItem;
 		return (
-			<TouchableWithoutFeedback onPress={() => setSelectedAge(item)}>
+			<TouchableWithoutFeedback onPress={() => setSelectedItem(item)}>
 				<View style={styles.itemContainer}>
 					<View
 						style={[

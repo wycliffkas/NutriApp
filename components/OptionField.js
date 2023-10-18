@@ -15,7 +15,7 @@ const OptionField = ({ description, title, id, selected, onHandleSelection }) =>
 
 	return (
 		<TouchableOpacity
-			onPress={() => onHandleSelection(id)}
+			onPress={() => onHandleSelection(id, title)}
 			style={[styles.container, isFocused && styles.focusedView]}>
 			<Text style={styles.title}>{title}</Text>
 			<Text style={styles.description}>{description}</Text>

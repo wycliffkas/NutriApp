@@ -1,19 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { View, Text, StyleSheet } from "react-native";
+import Toast from "react-native-toast-message";
+
 import { main } from "../../styles/main";
 import OptionField from "../../components/OptionField";
 import Button from "../../components/Button";
+import { AuthContext } from "../../context/AuthContext";
 
 const ActivityLevel = ({ navigation }) => {
-  const [selected, setSelected] = useState(null);
+	const [selected, setSelected] = useState(null);
+	const [activityLevel, setActivityLevel] = useState(null);
+	const { userDetails, setUserDetails } = useContext(AuthContext);
 
-	const handleSelection = (index) => {
+	const handleSelection = (index, value) => {
 		setSelected(index === selected ? null : index);
+		setActivityLevel(value);
 	};
 
-  const handleNext = () => {
-    navigation.navigate('Height')
-  }
+
+	const showToast = () => {
+		Toast.show({
+			type: "info",
+			text1: "Please choose your activity level"
+		});
+	};
+
+	const handleNext = () => {
+		if (selected === null) {
+			showToast();
+			return;
+		}
+		setUserDetails({ ...userDetails, activityLevel });
+		navigation.navigate("Height");
+	};
 
 	const activityLevels = [
 		{
@@ -40,7 +59,7 @@ const ActivityLevel = ({ navigation }) => {
 
 	return (
 		<View style={styles.container}>
-			<Text style={main.title}>How would you describe your body type?</Text>
+			<Text style={main.title}>What is your activity level?</Text>
 
 			{activityLevels.map((item) => (
 				<OptionField
@@ -60,6 +79,7 @@ const ActivityLevel = ({ navigation }) => {
 
 const styles = StyleSheet.create({
 	container: {
+    flex: 1,
 		marginHorizontal: 20
 	}
 });

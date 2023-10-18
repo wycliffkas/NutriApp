@@ -8,6 +8,7 @@ export const main = StyleSheet.create({
 		color: darkGrey200,
 		fontFamily: "EBGaramond-Regular",
 		lineHeight: 31.32,
-    marginTop: 30
+    marginTop: 30,
+    // marginBottom: 10
 	}
 });
