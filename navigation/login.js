@@ -5,9 +5,12 @@ import { TouchableOpacity } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { darkGrey100 } from "../styles/colors";
 
-import BodyTypeScreen from "../views/login/BodyType";
-import AgeScreen from "../views/login/Age";
-import ActivityLevelScreen from "../views/login/ActivityLevel";
+import BodyTypeScreen from "../screens/login/BodyType";
+import AgeScreen from "../screens/login/Age";
+import ActivityLevelScreen from "../screens/login/ActivityLevel";
+import HeightScreen from "../screens/login/Height";
+import WeightScreen from "../screens/login/Weight";
+import GenderScreen from "../screens/login/Gender";
 
 const Stack = createStackNavigator();
 
@@ -62,6 +65,47 @@ const Login = () => {
 				<Stack.Screen
 					name="ActivityLevel"
 					component={ActivityLevelScreen}
+					options={({ navigation }) => ({
+						headerLeft: () => (
+							<TouchableOpacity
+								onPress={() => navigation.goBack()}
+								style={{ marginLeft: 10 }}>
+								<AntDesign name="arrowleft" size={24} color="black" />
+							</TouchableOpacity>
+						)
+					})}
+				/>
+
+				<Stack.Screen
+					name="Height"
+					component={HeightScreen}
+					options={({ navigation }) => ({
+						headerLeft: () => (
+							<TouchableOpacity
+								onPress={() => navigation.goBack()}
+								style={{ marginLeft: 10 }}>
+								<AntDesign name="arrowleft" size={24} color="black" />
+							</TouchableOpacity>
+						)
+					})}
+				/>
+
+				<Stack.Screen
+					name="Weight"
+					component={WeightScreen}
+					options={({ navigation }) => ({
+						headerLeft: () => (
+							<TouchableOpacity
+								onPress={() => navigation.goBack()}
+								style={{ marginLeft: 10 }}>
+								<AntDesign name="arrowleft" size={24} color="black" />
+							</TouchableOpacity>
+						)
+					})}
+				/>
+				<Stack.Screen
+					name="Gender"
+					component={GenderScreen}
 					options={({ navigation }) => ({
 						headerLeft: () => (
 							<TouchableOpacity
